@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,6 +43,9 @@ public class Contract implements Serializable {
 
 	@Column(name = "CONTRACT_CANCELATION")
 	private boolean cancellation;
+	
+	@ManyToOne
+	Customer customer;
 
 	public Contract() {
 	}
