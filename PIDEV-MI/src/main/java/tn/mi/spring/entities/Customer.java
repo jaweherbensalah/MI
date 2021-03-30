@@ -2,7 +2,9 @@ package tn.mi.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,24 +12,20 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "T_CUSTOMER")
-public class Customer implements Serializable {
+public class Customer extends User {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CUSTOMER_ID")
-	private Long id;
-
+	
 	@Column(name = "CUSTOMER_PHONE")
 	private String phone;
 
@@ -55,36 +53,17 @@ public class Customer implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private Validity validity;
+	
+	@OneToMany(cascade = CascadeType. ALL, mappedBy="customer")
+	private Set<Claim> claims;
+	
+	@OneToMany(cascade = CascadeType. ALL, mappedBy="customer")
+	private Set<Contract> contracts;
 
 	public Customer() {
+		super();
 	}
 
-	/**
-	 * @param id
-	 * @param phone
-	 * @param address
-	 * @param birth_date
-	 * @param cni_image
-	 * @param sign_image
-	 * @param medical_booklet_image
-	 * @param level
-	 * @param experience
-	 * @param validity
-	 */
-	public Customer(Long id, String phone, String address, Date birth_date, String cni_image, String sign_image,
-			String medical_booklet_image, Level level, Experience experience, Validity validity) {
-		super();
-		this.id = id;
-		this.phone = phone;
-		this.address = address;
-		this.birth_date = birth_date;
-		this.cni_image = cni_image;
-		this.sign_image = sign_image;
-		this.medical_booklet_image = medical_booklet_image;
-		this.level = level;
-		this.experience = experience;
-		this.validity = validity;
-	}
 
 	/**
 	 * @param phone
@@ -109,20 +88,6 @@ public class Customer implements Serializable {
 		this.level = level;
 		this.experience = experience;
 		this.validity = validity;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	/**
