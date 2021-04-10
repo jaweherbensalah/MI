@@ -1,9 +1,5 @@
 package tn.mi.spring.entities;
 
-
-public class User {
-
-=======
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

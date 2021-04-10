@@ -1,16 +1,15 @@
 package tn.mi.spring.entities;
 
 import java.io.Serializable;
-
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,7 +48,7 @@ public class Facture  implements Serializable {
 
 
 	@ManyToOne
-	Contrat Contrats;
+	Contract Contrats;
 
 
 	public Facture() {
@@ -72,7 +71,7 @@ public class Facture  implements Serializable {
 	}
 	
 	public Facture(Long nfacture, Long id, String client, Date date_debut, Date date_fin, double paiement,
-			String type_produit, Paiement type_paiement, Contrat contrats) {
+			String type_produit, Paiement type_paiement, Contract contrats) {
 		super();
 		this.Nfacture = nfacture;
 		this.id = id;
@@ -165,12 +164,12 @@ public class Facture  implements Serializable {
 	}
 
 
-	public Contrat getContrats() {
+	public Contract getContrats() {
 		return Contrats;
 	}
 
 
-	public void setContrats(Contrat contrats) {
+	public void setContrats(Contract contrats) {
 		Contrats = contrats;
 	}
 
