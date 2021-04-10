@@ -1,5 +1,9 @@
 package tn.mi.spring.entities;
 
+
+public class User {
+
+=======
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -229,4 +233,6 @@ public class User implements UserDetails {
 		this.enabled = enabled;
 	}
 	public User(){}
+ 
+
 }
