@@ -22,4 +22,6 @@ public interface ICustomerService {
 	void deleteCustomer(String id);
 	
 	Customer retrieveCustomer(String id);
+	
+	long countCustomersWithCurrentContract();
 }
