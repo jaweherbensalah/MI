@@ -9,82 +9,169 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "T_FORMULAR")
 public class Formular implements Serializable{
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 1L; 
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	
 	@Column(name = "FORMULAR_ID")
-	private Long id;
+	private Long id; 
 	
 	@Column(name = "FORMULAR_NAME")
-	private String name;
+	private String formular_name; 
 	
+	@Column(name = "PREMIUM_FORMULAR")
+	private double premium_formular; 
+	
+	@Column(name = "COMPENSATION_FORMULAR")
+	private double compensation_formular; 
+	
+	@Column(name = "CONDITION_FORMULAR")
+	private String condition_formular; 
+	
+	@ManyToOne
+    private Product product;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="formular")
+	private Set<Service> services;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="formular")
+	private Set<Risk> risks;
+
 	
 	public Formular() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @param id
-	 * @param name
-	 * @param contracts
-	 */
-	public Formular(Long id, String name, Set<Contract> contracts) {
+	public Formular(Long id, String formular_name, double premium_formular, double compensation_formular,
+			String condition_formular, Product product, Set<Service> services, Set<Risk> risks) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.formular_name = formular_name;
+		this.premium_formular = premium_formular;
+		this.compensation_formular = compensation_formular;
+		this.condition_formular = condition_formular;
+		this.product = product;
+		this.services = services;
+		this.risks = risks;
 	}
 
-	/**
-	 * @param name
-	 * @param contracts
-	 */
-	public Formular(String name, Set<Contract> contracts) {
+	public Formular(String formular_name, double premium_formular, double compensation_formular,
+			String condition_formular, Product product, Set<Service> services, Set<Risk> risks) {
 		super();
-		this.name = name;
+		this.formular_name = formular_name;
+		this.premium_formular = premium_formular;
+		this.compensation_formular = compensation_formular;
+		this.condition_formular = condition_formular;
+		this.product = product;
+		this.services = services;
+		this.risks = risks;
 	}
 
-	/**
-	 * @return the id
-	 */
+
 	public Long getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
+
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
+
+	public String getFormular_name() {
+		return formular_name;
 	}
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
+
+	public void setFormular_name(String formular_name) {
+		this.formular_name = formular_name;
 	}
 
-	/**
-	 * @return the serialversionuid
-	 */
+
+	public double getPremium_formular() {
+		return premium_formular;
+	}
+
+
+	public void setPremium_formular(double premium_formular) {
+		this.premium_formular = premium_formular;
+	}
+
+
+	public double getCompensation_formular() {
+		return compensation_formular;
+	}
+
+
+	public void setCompensation_formular(double compensation_formular) {
+		this.compensation_formular = compensation_formular;
+	}
+
+
+	public String getCondition_formular() {
+		return condition_formular;
+	}
+
+
+	public void setCondition_formular(String condition_formular) {
+		this.condition_formular = condition_formular;
+	}
+
+
+	public Product getProduct() {
+		return product;
+	}
+
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+
+	public Set<Service> getServices() {
+		return services;
+	}
+
+
+	public void setServices(Set<Service> services) {
+		this.services = services;
+	}
+
+
+	public Set<Risk> getRisks() {
+		return risks;
+	}
+
+
+	public void setRisks(Set<Risk> risks) {
+		this.risks = risks;
+	}
+
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Formular [id=" + id + ", formular_name=" + formular_name + ", premium_formular=" + premium_formular
+				+ ", compensation_formular=" + compensation_formular + ", condition_formular=" + condition_formular
+				+ ", product=" + product + ", services=" + services + ", risks=" + risks + "]";
+	}
+
+
 	
 	
 }
-
