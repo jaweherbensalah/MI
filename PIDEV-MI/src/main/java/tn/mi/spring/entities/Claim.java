@@ -3,6 +3,7 @@ package tn.mi.spring.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,23 +27,22 @@ public class Claim implements Serializable {
 	@Column(name = "CLAIM_ID")
 	private Long id;
 
-	@Column(name = "CLAIM_SUBJECT")
+	@Column(name = "CLAIM_SUBJECT", nullable = false)
 	private String subject;
 
-	@Column(name = "CLAIM_BODY")
+	@Column(name = "CLAIM_BODY", nullable = false)
 	private String body;
-
+    @Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date claim_date;
 
 	@Column(name = "CLAIM_ANSWER")
-	private String answer;
-
-	@Column(name = "CLAIM_SOLVE")
-	private boolean solve;
+	private String answer="";
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	Customer customer;
+	
+	
 
 	public Claim() {
 	}
@@ -62,7 +62,6 @@ public class Claim implements Serializable {
 		this.body = body;
 		this.claim_date = claim_date;
 		this.answer = answer;
-		this.solve = solve;
 	}
 
 	/**
@@ -72,13 +71,12 @@ public class Claim implements Serializable {
 	 * @param answer
 	 * @param solve
 	 */
-	public Claim(String subject, String body, Date claim_date, String answer, boolean solve) {
+	public Claim(String subject, String body, Date claim_date, String answer) {
 		super();
 		this.subject = subject;
 		this.body = body;
 		this.claim_date = claim_date;
 		this.answer = answer;
-		this.solve = solve;
 	}
 
 	/**
@@ -152,17 +150,17 @@ public class Claim implements Serializable {
 	}
 
 	/**
-	 * @return the solve
+	 * @return the customer
 	 */
-	public boolean isSolve() {
-		return solve;
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	/**
-	 * @param solve the solve to set
+	 * @param customer the customer to set
 	 */
-	public void setSolve(boolean solve) {
-		this.solve = solve;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	/**
@@ -170,9 +168,8 @@ public class Claim implements Serializable {
 	 */
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	};
+	}
 
 	
-
 
 }

@@ -35,6 +35,11 @@ public class CustomerServiceImpl implements ICustomerService{
 		}
 		return customers;
 	}
+	@Override
+	public long countCustomersWithCurrentContract()
+	{
+		return customerRepository.countCustomersWithContract();
+	}
 	
 	@Override
 	public Customer addCustomer(Customer c){
