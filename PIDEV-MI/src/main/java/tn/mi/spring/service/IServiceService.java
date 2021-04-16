@@ -11,7 +11,7 @@ public interface IServiceService {
 	
 	void deleteService(Integer id);
 	
-	Service updateService(Service p); 
+	Service updateService(Service s); 
 	
 	List<Service> findByIdGreaterThan(int id);
 	

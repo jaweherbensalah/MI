@@ -36,7 +36,7 @@ public class RiskRestControl {
 		return riskService.retrieveRisk(RiskId);
 		}
 		
-		// Ajouter Service : http://localhost:8081/SpringMVC/servlet/add-risk
+		// Add Risk : http://localhost:8081/SpringMVC/servlet/add-risk
 		@PostMapping("/add-risk")
 		@ResponseBody
 		public Risk addrisk(@RequestBody Risk r) {

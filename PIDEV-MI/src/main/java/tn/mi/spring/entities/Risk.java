@@ -22,7 +22,7 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	
 	@Column(name = "RISK_ID")
-	private Long id; 
+	private int id; 
 	
 	@Column(name = "TYPE_RISK")
 	private String type_risk; 
@@ -41,7 +41,7 @@ private static final long serialVersionUID = 1L;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Risk(Long id, String type_risk, String descrip_risk, Formular formular) {
+	public Risk(int id, String type_risk, String descrip_risk, Formular formular) {
 		super();
 		this.id = id;
 		this.type_risk = type_risk;
@@ -56,11 +56,11 @@ private static final long serialVersionUID = 1L;
 		this.formular = formular;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -96,7 +96,8 @@ private static final long serialVersionUID = 1L;
 	public String toString() {
 		return "Risk [id=" + id + ", type_risk=" + type_risk + ", descrip_risk=" + descrip_risk + ", formular="
 				+ formular + "]";
-	} 
+	}
+
 	
 	
 }

@@ -10,6 +10,7 @@ import tn.mi.spring.entities.Product;
 public interface IProductService {
 	
 	List<Product> retrieveAllProducts(); 
+	
 	Product addProduct(Product p);
 	
 	void deleteProduct(Integer id);

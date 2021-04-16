@@ -4,14 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +23,6 @@ public class Contract implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CONTRACT_ID")
 	private Long id;
 
 	@Temporal(TemporalType.DATE)
@@ -35,7 +31,6 @@ public class Contract implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date end_contract_date;
 
-	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date subscription_date;
 	
@@ -45,16 +40,14 @@ public class Contract implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date cancel_date;
 	
-	@Column(name = "CONTRACT_SUBSCRIPTION_VALIDATE")
 	private boolean subscription_validate = false;
 
-	@Column(name = "CONTRACT_CANCELATION")
 	private boolean cancellation = false;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	Customer customer;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	Formular formular;
 
 	public Contract() {

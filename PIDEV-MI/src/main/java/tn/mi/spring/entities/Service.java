@@ -19,9 +19,8 @@ private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	
 	@Column(name = "SERVICE_ID")
-	private Long id; 
+	private int id; 
 	
 	@Column(name = "SERVICE_NAME")
 	private String service_name; 
@@ -40,7 +39,7 @@ private static final long serialVersionUID = 1L;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Service(Long id, String service_name, String descrip_service, Formular formular) {
+	public Service(int id, String service_name, String descrip_service, Formular formular) {
 		super();
 		this.id = id;
 		this.service_name = service_name;
@@ -55,11 +54,11 @@ private static final long serialVersionUID = 1L;
 		this.formular = formular;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

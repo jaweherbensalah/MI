@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+@Service
 public class ServiceServiceImpl implements IServiceService {
 
 	@Override
@@ -25,7 +26,7 @@ public class ServiceServiceImpl implements IServiceService {
 	}
 
 	@Override
-	public Service updateService(Service p) {
+	public Service updateService(Service s) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,23 +1,19 @@
 package tn.mi.spring.entities;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
-@Table(name = "T_CUSTOMER")
-@PrimaryKeyJoinColumn(name = "id")
 public class Customer extends User {
 	/**
 	 * 
@@ -25,22 +21,17 @@ public class Customer extends User {
 	private static final long serialVersionUID = 1L;
 
 	
-	@Column(name = "CUSTOMER_PHONE")
 	private String phone;
 
-	@Column(name = "CUSTOMER_ADDRESS")
 	private String address;
 
 	@Temporal(TemporalType.DATE)
 	private Date birth_date;
 
-	@Column(name = "CUSTOMER_CNI_IMAGE")
 	private String cni_image;
-
-	@Column(name = "CUSTOMER_SIGN_IMAGE")
+	
 	private String sign_image;
 	
-	@Column(name = "CUSTOMER_MEDICAL_BOOKLET_IMAGE")
 	private String medical_booklet_image;
 	
 	
@@ -53,13 +44,20 @@ public class Customer extends User {
 	@Enumerated(EnumType.STRING)
 	private Validity validity;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="customer")
+	List<Contract> contracts;
 
 	public Customer() {
 		super();
 	}
 
-
 	/**
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param password
+	 * @param appUserRole
 	 * @param phone
 	 * @param address
 	 * @param birth_date
@@ -69,10 +67,13 @@ public class Customer extends User {
 	 * @param level
 	 * @param experience
 	 * @param validity
+	 * @param contracts
 	 */
-	public Customer(String phone, String address, Date birth_date, String cni_image, String sign_image,
-			String medical_booklet_image, Level level, Experience experience, Validity validity) {
-		super();
+	public Customer(String firstName, String lastName, String email,
+			String phone, String address, Date birth_date, String cni_image, String sign_image,
+			String medical_booklet_image, Level level, Experience experience, Validity validity,
+			List<Contract> contracts) {
+		super(firstName, lastName, email);
 		this.phone = phone;
 		this.address = address;
 		this.birth_date = birth_date;
@@ -82,8 +83,8 @@ public class Customer extends User {
 		this.level = level;
 		this.experience = experience;
 		this.validity = validity;
+		this.contracts = contracts;
 	}
-
 
 	/**
 	 * @return the phone
@@ -92,14 +93,12 @@ public class Customer extends User {
 		return phone;
 	}
 
-
 	/**
 	 * @param phone the phone to set
 	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 
 	/**
 	 * @return the address
@@ -108,14 +107,12 @@ public class Customer extends User {
 		return address;
 	}
 
-
 	/**
 	 * @param address the address to set
 	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 
 	/**
 	 * @return the birth_date
@@ -124,14 +121,12 @@ public class Customer extends User {
 		return birth_date;
 	}
 
-
 	/**
 	 * @param birth_date the birth_date to set
 	 */
 	public void setBirth_date(Date birth_date) {
 		this.birth_date = birth_date;
 	}
-
 
 	/**
 	 * @return the cni_image
@@ -140,14 +135,12 @@ public class Customer extends User {
 		return cni_image;
 	}
 
-
 	/**
 	 * @param cni_image the cni_image to set
 	 */
 	public void setCni_image(String cni_image) {
 		this.cni_image = cni_image;
 	}
-
 
 	/**
 	 * @return the sign_image
@@ -156,14 +149,12 @@ public class Customer extends User {
 		return sign_image;
 	}
 
-
 	/**
 	 * @param sign_image the sign_image to set
 	 */
 	public void setSign_image(String sign_image) {
 		this.sign_image = sign_image;
 	}
-
 
 	/**
 	 * @return the medical_booklet_image
@@ -172,14 +163,12 @@ public class Customer extends User {
 		return medical_booklet_image;
 	}
 
-
 	/**
 	 * @param medical_booklet_image the medical_booklet_image to set
 	 */
 	public void setMedical_booklet_image(String medical_booklet_image) {
 		this.medical_booklet_image = medical_booklet_image;
 	}
-
 
 	/**
 	 * @return the level
@@ -188,14 +177,12 @@ public class Customer extends User {
 		return level;
 	}
 
-
 	/**
 	 * @param level the level to set
 	 */
 	public void setLevel(Level level) {
 		this.level = level;
 	}
-
 
 	/**
 	 * @return the experience
@@ -204,14 +191,12 @@ public class Customer extends User {
 		return experience;
 	}
 
-
 	/**
 	 * @param experience the experience to set
 	 */
 	public void setExperience(Experience experience) {
 		this.experience = experience;
 	}
-
 
 	/**
 	 * @return the validity
@@ -220,7 +205,6 @@ public class Customer extends User {
 		return validity;
 	}
 
-
 	/**
 	 * @param validity the validity to set
 	 */
@@ -228,14 +212,32 @@ public class Customer extends User {
 		this.validity = validity;
 	}
 
-
-
 	/**
-	 * @return the serialversionuid
+	 * @return the contracts
 	 */
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public List<Contract> getContracts() {
+		return contracts;
 	}
 
+	/**
+	 * @param contracts the contracts to set
+	 */
+	public void setContracts(List<Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Customer [phone=" + phone + ", address=" + address + ", birth_date=" + birth_date + ", cni_image="
+				+ cni_image + ", sign_image=" + sign_image + ", medical_booklet_image=" + medical_booklet_image
+				+ ", level=" + level + ", experience=" + experience + ", validity=" + validity + ", contracts="
+				+ contracts + "]";
+	}
+
+	
+	
 	
 }

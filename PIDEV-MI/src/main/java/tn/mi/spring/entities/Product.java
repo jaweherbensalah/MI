@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.management.relation.Role;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,8 +26,6 @@ public class Product implements Serializable{
 	@Column(name = "PRODUCT_ID")
 	private int id; 
 	
-	private Role role; 
-	
 	@Column(name = "PRODUCT_NAME")
 	private String product_name; 
 	
@@ -49,11 +46,10 @@ public class Product implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int id, Role role, String product_name, String feature, double product_price, Date creation_date,
+	public Product(int id, String product_name, String feature, double product_price, Date creation_date,
 			Set<Formular> formulars) {
 		super();
 		this.id = id;
-		this.role = role;
 		this.product_name = product_name;
 		this.feature = feature;
 		this.product_price = product_price;
@@ -61,10 +57,9 @@ public class Product implements Serializable{
 		this.formulars = formulars;
 	}
 
-	public Product(Role role, String product_name, String feature, double product_price, Date creation_date,
+	public Product(String product_name, String feature, double product_price, Date creation_date,
 			Set<Formular> formulars) {
 		super();
-		this.role = role;
 		this.product_name = product_name;
 		this.feature = feature;
 		this.product_price = product_price;
@@ -78,14 +73,6 @@ public class Product implements Serializable{
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
 	}
 
 	public String getProduct_name() {
@@ -134,7 +121,7 @@ public class Product implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", role=" + role + ", product_name=" + product_name + ", feature=" + feature
+		return "Product [id=" + id + ", product_name=" + product_name + ", feature=" + feature
 				+ ", product_price=" + product_price + ", creation_date=" + creation_date + ", formulars=" + formulars
 				+ "]";
 	}
