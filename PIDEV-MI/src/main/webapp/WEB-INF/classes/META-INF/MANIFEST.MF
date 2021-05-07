@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: MicroInsuranceProject
+Implementation-Version: 1.0
+Built-By: ASUS
+Implementation-Vendor-Id: tn.mi.spring
+Build-Jdk: 1.8.0_251
+Implementation-URL: https://spring.io/projects/spring-boot/MicroInsura
+ nceProject
+Created-By: Maven Integration for Eclipse
+

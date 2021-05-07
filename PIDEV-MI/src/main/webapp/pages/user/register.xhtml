@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+
+
+
+
+
+<h:body>
+
+
+
+
+	<h:head>
+
+
+		<link href="../../resources/assets/css/vendor.css" rel="stylesheet" />
+		<link href="../../resources/assets/css/font-awesome.css"
+			rel="stylesheet" />
+		<link href="../../resources/assets/css/theme-blue-orange_red.css"
+			rel="stylesheet" />
+		<link href="../..resources/assets/css/custom.css" rel="stylesheet" />
+		<link href="../../resources/assets/css/ie-fix.css" rel="stylesheet" />
+		<link href="../../resources/assets/img/favicon.ico" rel="stylesheet" />
+		<link href="../../resources/assets/img/favicon.ico" rel="stylesheet"
+			type="image/x-icon" />
+
+	</h:head>
+
+
+
+
+	<h:panelGroup columns="2">
+		<h:form>
+			<h1>Create a new account</h1>
+			<div class="row">
+
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<div class="form-group label-floating">
+						<h:outputText class="control-label" value="First Name " />
+						<h:inputText class="form-control" placeholder=""
+							value="#{userController.firstName}" />
+					</div>
+				</div>
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<div class="form-group label-floating">
+						<h:outputText class="control-label" value="Last Name " />
+						<h:inputText class="form-control" placeholder=""
+							value="#{userController.lastName}" />
+					</div>
+				</div>
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<div class="form-group label-floating">
+						<h:outputText class="control-label" value="City " />
+						<h:inputText class="form-control" placeholder=""
+							value="#{userController.city}" />
+					</div>
+				</div>
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<div class="form-group label-floating">
+						<h:outputText class="control-label" value="Nationality " />
+						<h:inputText class="form-control" placeholder=""
+							value="#{userController.nationality}" />
+					</div>
+				</div>
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<div class="form-group label-floating">
+						<h:outputText class="control-label" value="Email " />
+						<h:inputText class="form-control" placeholder=""     id="email1"  
+							value="#{userController.email}" >
+						
+							  </h:inputText>
+							
+					</div>
+				</div>
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<h:outputText value="Your password" class="control-label" />
+					<div class="form-group">
+						<h:inputSecret value="#{userController.password}" type="password"
+							name="password" id="login-password-inline" class="form-control" />
+					</div>
+
+				</div>
+				<tr>
+					<td><h:outputText value="Activate Account/ Deactivate Account"></h:outputText></td>
+					<td><h:selectBooleanCheckbox value="#{userController.enabled}"></h:selectBooleanCheckbox></td>
+				</tr>
+				
+				
+		
+
+			    
+	
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<div class="form-group label-floating">
+						<h:outputText value=".">
+						</h:outputText> <h:selectOneMenu
+						value="#{userController.role}" required="true">
+
+						<f:selectItems value="#{data.roles}" />
+
+					</h:selectOneMenu>
+					</div>
+				</div>
+				
+				
+				
+				
+				<br></br>
+				<br><br></br></br>
+
+
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+
+					<tr class="form-group">
+						<h:commandLink value="Register"
+						ajax="false" icon="pi pi-check" 
+						validateClient="true" styleClass="p-mt-3" 
+							action="#{userController.ajouterEmploye()}" class="control-label" />
+					</tr>
+				</div>
+				<br></br>
+				<div class="col col-lg-6 col-md-6 col-sm-12 col-12">
+					<tr class="form-group">
+						<h:commandButton action="#{userController.doLogout()}"
+							value="Login to your account"  class="control-label"/>
+					</tr>
+				</div>
+
+			</div>
+		</h:form>
+
+	</h:panelGroup>
+</h:body>
+</html>
