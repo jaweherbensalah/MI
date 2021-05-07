@@ -1,0 +1,301 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="https//bootsfaces.net/ui"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="indemnisation" />
+	<ui:define name="content">
+
+		<h:panelGroup>
+
+			<h:head>
+			  <!--====== Animate CSS ======-->
+   	<h:outputStylesheet library="css" name="animate.css" />
+        
+    <!--====== Magnific Popup CSS ======-->
+    	<h:outputStylesheet library="css" name="magnific-popup.css" />
+   
+        
+    <!--====== Slick CSS ======-->
+    
+    	<h:outputStylesheet library="css" name="slick.css"/>    
+    <!--====== Line Icons CSS ======-->
+    	<h:outputStylesheet library="css" name="LineIcons.css"/>  
+    
+        
+    <!--====== Font Awesome CSS ======-->
+    <h:outputStylesheet library="css" name="font-awesome.min.css"/>     
+    <!--====== Bootstrap CSS ======-->
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/> 
+   
+    
+    <!--====== Default CSS ======-->
+     <h:outputStylesheet library="css" name="default.css"/>
+   
+    
+    <!--====== Style CSS ======-->
+      <h:outputStylesheet library="css" name="style.css"/>
+      
+				<p:graphicImage value="/resources/images/indemnisation.png"></p:graphicImage>
+
+				<h:outputStylesheet library="css" name="factures.css" />
+				<!--<h:outputScript library="js" name="factures.js"></h:outputScript>  -->
+
+			</h:head>
+		</h:panelGroup>
+
+
+		<h:panelGroup columns="2">
+			<h:form>
+				<p:growl id="growl" showDetail="true" />
+				<p:growl id="growl-sticky" for="sticky-key" showDetail="true"
+					sticky="true" />
+
+				<table>
+
+					<tr>
+						<td><h:outputText value="ID de CLIENT"></h:outputText></td>
+						<td><h:inputText id="idClient"
+								value="#{indemnisationController.id}" placeholder="idClient"></h:inputText>
+							<p:tooltip for="idClient"
+								value="Enter l identifiant de notre client" position="idClient" /></td>
+
+					</tr>
+					<tr>
+						<td><h:outputText value="Nom de Client"></h:outputText></td>
+						<td><h:inputText id="nomclient"
+								value="#{indemnisationController.nomClient}" placeholder="nomclient"></h:inputText>
+							<p:tooltip for="nomclient" value="Enter le nom de notre client"
+								position="nomclient" /></td>
+					</tr>
+					
+					<tr>
+						<td><h:outputText value="quantité "></h:outputText></td>
+						<td><h:inputText id="quantite"
+								value="#{indemnisationController.quantite}" placeholder="quantite"></h:inputText>
+							<p:tooltip for="quantite" value="Enter le nbre de quantité"
+								position="quantite" /></td>
+					</tr>
+					
+					<tr>
+						<td><h:outputText value="date_debut">
+
+							</h:outputText></td>
+						<td><p:calendar id="date_debut"
+								value="#{indemnisationController.date_debut}" pattern="yyyy-MM-dd"
+								placeholder="date_debut">
+								<p:tooltip for="date_debut"
+									value="Enter date de la creation du facture"
+									position="date_debut" />
+							</p:calendar></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="date_fin">
+
+							</h:outputText></td>
+						<td><p:calendar id="date_fin"
+								value="#{indemnisationController.date_fin}" pattern="yyyy-MM-dd"
+								placeholder="date_fin">
+								<p:tooltip for="date_fin" value="taper la date fin du facture"
+									position="date_fin" />
+							</p:calendar></td>
+					</tr>
+
+
+
+
+					<!-- <tr>
+						<td><h:outputText value="Payer / NomPayer"></h:outputText></td>
+						<td><h:selectBooleanCheckbox value="#{userController.actif}"></h:selectBooleanCheckbox></td>
+					</tr> -->
+
+
+					<tr>
+						<td><h:outputText value="Type de produit"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{indemnisationController.type_produit}">
+								<f:selectItem itemLabel="Choisir le type de prod"
+									itemValue="#{null}" />
+								<f:selectItems value="#{indemnisationController.type_Prods}" />
+							</h:selectOneMenu></td>
+					</tr>
+						<tr>
+						<td><h:outputText value="Type de sante"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{indemnisationController.sante}">
+								<f:selectItem itemLabel="Choisir le type de sante"
+									itemValue="#{null}" />
+								<f:selectItems value="#{indemnisationController.santes}" />
+							</h:selectOneMenu></td>
+					</tr>
+						<tr>
+						<td><h:outputText value="nom de region"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{indemnisationController.region}">
+								<f:selectItem itemLabel="Choisir la region"
+									itemValue="#{null}" />
+								<f:selectItems value="#{indemnisationController.regions}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Type de virement"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{indemnisationController.virement}">
+								<f:selectItem itemLabel="Choisir le type de virement"
+									itemValue="#{null}" />
+								<f:selectItems value="#{indemnisationController.virements}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Email de client "></h:outputText></td>
+						<td><h:inputText id="email"
+								value="#{indemnisationController.email}" required="true"
+								validatoMessage="le format du mail est invalide!"
+								requiredMessage="Mail obligatoire!" placeholder="email">
+								<f:validateRegex pattern=".+\@.+\..+" />
+							</h:inputText> <p:tooltip for="email" value="taper l email de notre client"
+								position="email" /> <h:message for="email" style="color:green"></h:message>
+						</td>
+					</tr>
+					
+
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter Indemnisation"
+								action="#{indemnisationController.addindemnisation()}"
+								actionListener="#{indemnisationController.showInfo}" /> <h:commandButton
+								value="mettre a jour"
+								action="#{indemnisationController.UpdateIndemnisation()}"
+								actionListener="#{indemnisationController.showInfomodifier}" /></td>
+					</tr>
+				</table>
+
+			</h:form>
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h:form id="form">
+				<h:dataTable value="#{indemnisationController.indemnisations}" var="indemnisation"
+					border="1" cellspacing="4" width="90%" rowClasses="paire,impaire"
+					headerClass="titre" id="listTable"
+					>
+
+					<h:column selectionMode="single"
+						style="width:16px;text-align:center">
+						<f:facet name="header">
+							<h:outputText value="Numero d'indemnisation" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.num_ind}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="identifiant client" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.id}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Nom de client" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.nom}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="quantité" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.quantite}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="prix_unitaire" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.prix_unitaire}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Montant" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.montant}" />
+					</h:column>
+				
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="date debut" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.date_debut}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="date fin" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.date_fin}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="type de produit" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.type_produit}" />
+					</h:column>
+<h:column>
+						<f:facet name="header">
+							<h:outputText value="type de sante" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.sante}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="nom de region" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.region}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="type de virement" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.virement}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="email" />
+						</f:facet>
+						<h:outputText value="#{indemnisation.email}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton
+							action="#{indemnisationController.removeIndemnisation(indemnisation.num_ind)}"
+							value="Supprimer"
+							actionListener="#{indemnisationController.showInfosupp}" />
+						<h:commandButton
+							action="#{indemnisationController.displayIndemnisation(indemnisation)}"
+							value="Afficher" />
+
+					</h:column>
+
+
+
+
+				</h:dataTable>
+				<p:commandButton value="Print" title="Print" type="button">
+					<p:printer target="listTable" />
+				</p:commandButton>
+	</h:form></h:panelGroup>
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	</ui:define></ui:composition>

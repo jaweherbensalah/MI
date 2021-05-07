@@ -1,0 +1,74 @@
+outputtext{color: #ffffff;}
+.titre {
+	background-color: #000000;
+	color: #9999cc;
+}
+
+.paire {
+	background-color: #EFEFEF;
+}
+
+.impaire {
+	background-color: #CECECE;
+}
+
+.ui-splitbutton {
+	margin-right: .5rem;
+}
+
+.ui-tooltip {
+	max-width: 120px;
+	white-space: pre-wrap;
+}
+.format{
+font-weight:bold;
+font-size:large;
+font-family:cursive;
+color:pink
+}
+   .left {
+        text-align: left;
+    }
+
+    .right div {
+        float: right;
+    }
+
+.body {
+ font-family:"trebuchet ms",sans-serif;
+ font-size:90%;
+ }
+.form {
+ background-color:#FAFAFA;
+ padding:10px;
+ width:280px;
+ }
+commandButton.ui-button {
+        margin-right: .5rem;
+.legend {
+ color:#DF3F3F;
+ font-weight:bold
+ }
+.label {
+ margin-top:10px;
+ display:block;
+ }
+label.inline {
+ display:inline;
+ margin-right:50px;
+ }
+ .inputtext {
+ width:155px; 
+  font-size: 20px;
+ background-color:#FFF3F3;
+ }
+.input, textarea, select {
+ padding:3px;
+ border:1px solid #F5C5C5;
+ border-radius:5px;
+ width:200px;
+ box-shadow:1px 1px 2px #C0C0C0 inset;
+ }
+.select {
+ margin-top:10px;
+ }

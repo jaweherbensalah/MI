@@ -1,0 +1,421 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="https//bootsfaces.net/ui" template="/template/template.xhtml">
+	<ui:param name="page_name" value="Facture" />
+	<ui:define name="content">
+<h:head>
+		<h:panelGroup>
+
+			<h:form>
+		<h:outputScript name="css/bootstrap.css" />	      
+    <!--====== Animate CSS ======-->
+   	<h:outputStylesheet library="css" name="animate.css" />
+        
+    <!--====== Magnific Popup CSS ======-->
+    	<h:outputStylesheet library="css" name="magnific-popup.css" />
+   
+      
+    <!--====== Slick CSS ======-->
+    
+    	<h:outputStylesheet library="css" name="slick.css"/>    
+    <!--====== Line Icons CSS ======-->
+    	<h:outputStylesheet library="css" name="LineIcons.css"/>  
+    
+        
+    <!--====== Font Awesome CSS ======-->
+    <h:outputStylesheet library="css" name="font-awesome.min.css"/>     
+    <!--====== Bootstrap CSS ======-->
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/> 
+   
+    
+    <!--====== Default CSS ======-->
+     <h:outputStylesheet library="css" name="default.css"/>
+   
+    
+    <!--====== Style CSS ======-->
+      <h:outputStylesheet library="css" name="style.css"/>
+               
+				<h:outputStylesheet library="css" name="factures.css" />
+				<p:graphicImage value="/resources/images/Facture.png"></p:graphicImage>
+
+				<!--<h:outputScript library="js" name="factures.js"></h:outputScript>  -->
+
+			</h:form>
+		</h:panelGroup>
+</h:head>
+
+
+		<h:panelGroup columns="2">
+			<h:form>
+				<p:growl id="growl" showDetail="true" />
+				<p:growl id="growl-sticky" for="sticky-key" showDetail="true"
+					sticky="true" />
+
+				<table Class="outputtext">
+
+					<tr>
+						<td><h:outputText value="ID de CLIENT" ></h:outputText></td>
+						<td><h:inputText id="idClient"
+								value="#{factureController.idClient}" placeholder="idClient" styleClass="inputtext"></h:inputText>
+							<p:tooltip for="idClient"
+								value="Enter l identifiant de notre client" position="idClient" /></td>
+
+					</tr>
+					<tr>
+						<td><h:outputText value="Nom de Client"></h:outputText></td>
+						
+						<td>
+						<h:inputText id="nomclient"
+								value="#{factureController.nomclient}" placeholder="nomclient" styleClass="inputtext"></h:inputText>
+							<p:tooltip for="nomclient" value="Enter le nom de notre client"
+								position="nomclient" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Telephone de client "></h:outputText></td>
+						<td><div><h:inputText id="telephone"
+								value="#{factureController.telephone}" placeholder="telephone" styleClass="inputtext"></h:inputText>
+							<p:tooltip for="telephone"
+								value="Enter le numero telephone de notre client"
+								position="telephone" /></div></td>
+					</tr>
+
+					<tr>
+						<td><h:outputText value="quantité "></h:outputText></td>
+						<td><h:inputText id="quantite"
+								value="#{factureController.quantite}" placeholder="quantite" ></h:inputText>
+							<p:tooltip for="quantite" value="Enter le nbre de quantité"
+								position="quantite" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="notez bien que: "></h:outputText></td>
+						<td><h:inputText id="NB" value="#{factureController.NB}"
+								placeholder="NB" ></h:inputText> <p:tooltip for="NB"
+								value="Enter une remarque" position="NB" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="date_debut">
+
+							</h:outputText></td>
+						<td><p:calendar id="date_debut"
+								value="#{factureController.date_debut}" pattern="yyyy-MM-dd"
+								placeholder="date_debut" >
+								<p:tooltip for="date_debut"
+									value="Enter date de la creation du facture"
+									position="date_debut" />
+							</p:calendar></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="date_fin">
+
+							</h:outputText></td>
+						<td><p:calendar id="date_fin"
+								value="#{factureController.date_fin}" pattern="yyyy-MM-dd"
+								placeholder="date_fin" >
+								<p:tooltip for="date_fin" value="taper la date fin du facture"
+									position="date_fin" />
+							</p:calendar></td>
+					</tr>
+
+
+
+
+					<!-- <tr>
+						<td><h:outputText value="Payer / NomPayer"></h:outputText></td>
+						<td><h:selectBooleanCheckbox value="#{userController.actif}"></h:selectBooleanCheckbox></td>
+					</tr> -->
+
+
+					<tr>
+						<td><h:outputText value="Type de produit"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{factureController.type_produit}">
+								<f:selectItem itemLabel="Choisir le type de prod"
+									itemValue="#{null}" />
+								<f:selectItems value="#{factureController.type_Prods}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Type de paiement"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{factureController.type_paiement}">
+								<f:selectItem itemLabel="Choisir le type de paiement"
+									itemValue="#{null}" />
+								<f:selectItems value="#{factureController.paiements}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Email de client "></h:outputText></td>
+						<td><h:inputText id="email"
+								value="#{factureController.email}" required="true"
+								validatoMessage="le format du mail est invalide!"
+								requiredMessage="Mail obligatoire!" placeholder="email" styleClass="inputtext">
+								<f:validateRegex pattern=".+\@.+\..+" />
+							</h:inputText> <p:tooltip for="email" value="taper l email de notre client"
+								position="email" /> <h:message for="email" style="color:green"></h:message>
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Payer / NomPayer"></h:outputText></td>
+						<td><h:selectBooleanCheckbox
+								value="#{factureController.payer}"></h:selectBooleanCheckbox></td>
+					</tr>
+
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter Facture"
+								action="#{factureController.addfacture()}"
+								actionListener="#{factureController.showInfo}" /> <h:commandButton
+								value="mettre a jour"
+								action="#{factureController.UpdateFacture()}"
+								actionListener="#{factureController.showInfomodifier}" /> <h:commandButton
+								value="notification"
+								action="#{factureController.notification()}"
+								actionListener="#{factureController.showInfonotif}" /></td>
+					</tr>
+				</table>
+
+			</h:form>
+		</h:panelGroup>
+
+		<h:panelGroup>
+			<h:form id="form">
+				<h:dataTable value="#{factureController.factures}" var="facture"
+					border="1" cellspacing="5" width="90%" rowClasses="paire,impaire"
+					headerClass="titre" id="Table"
+					selection="#{factureController.factures}"
+					rowKey="#{facture.nfacture}">
+
+					<h:column selectionMode="single"
+						style="width:16px;text-align:center">
+						<f:facet name="header">
+							<h:outputText value="Numero de facture" />
+						</f:facet>
+						<h:outputText value="#{facture.nfacture}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="identifiant client" />
+						</f:facet>
+						<h:outputText value="#{facture.idClient}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Nom de client" />
+						</f:facet>
+						<h:outputText value="#{facture.nomclient}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Telephone" />
+						</f:facet>
+						<h:outputText value="#{facture.telephone}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="quantité" />
+						</f:facet>
+						<h:outputText value="#{facture.quantite}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="prix_unitaire" />
+						</f:facet>
+						<h:outputText value="#{facture.prix_unitaire}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Total_HT" />
+						</f:facet>
+						<h:outputText value="#{facture.total_HT}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Notez bien que" />
+						</f:facet>
+						<h:outputText value="#{facture.NB}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="date debut" />
+						</f:facet>
+						<h:outputText value="#{facture.date_debut}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="date fin" />
+						</f:facet>
+						<h:outputText value="#{facture.date_fin}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="type de produit" />
+						</f:facet>
+						<h:outputText value="#{facture.type_produit}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="type de paiement" />
+						</f:facet>
+						<h:outputText value="#{facture.type_paiement}" />
+					</h:column>
+
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="reduction" />
+						</f:facet>
+						<h:outputText value="#{facture.reduction}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Total_reduction" />
+						</f:facet>
+						<h:outputText value="#{facture.total_reduction}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="email" />
+						</f:facet>
+						<h:outputText value="#{facture.email}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="payer" />
+						</f:facet>
+						<h:outputText
+							value="#{facture.isPaiement == true ? 'Oui' : 'Non'}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton
+							action="#{factureController.removeFacture(facture.nfacture)}"
+							value="Supprimer"
+							actionListener="#{factureController.showInfosupp}" />
+						<h:commandButton
+							action="#{factureController.displayFacture(facture)}"
+							value="Afficher" />
+
+						<p:commandButton
+							action="#{factureController.findfacture(facture.nfacture)}"
+							process="Table" icon="pi pi-search" value="View"
+							oncomplete="PF('factureDialog').show()" />
+					</h:column>
+
+
+
+
+				</h:dataTable>
+				<p:commandButton value="Print" title="Print" type="button">
+					<p:printer target="Table" />
+				</p:commandButton>
+
+				<p:dialog id="fact" value="#{factureController.facture}"
+					var="facture" header="facture Info" widgetVar="factureDialog"
+					modal="true" showEffect="fade" hideEffect="fade">
+					<p:outputPanel id="factureDetail" style="text-align:center;">
+						<p:column>
+							<table>
+								<tr class="top">
+									<td colspan="2">
+										<table>
+											<tr>
+												<td class="factures"><p:graphicImage
+														value="/resources/images/facture.gif"
+														style="width: 100%; max-width: 300px" /></td>
+												<td><h:outputText value="Numero de facture:" /><br />
+													<h:outputText value="#{factureController.facture.nfacture}" /><br />
+													Created: <br /> <h:outputText
+														value="#{factureController.facture.debut_date}" /> Due: <br />
+													<h:outputText
+														value="#{factureController.facture.debut_fin}" /></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+
+								<tr class="information">
+									<td colspan="2">
+										<table>
+											<tr>
+												<td><h:outputText
+														value="#{factureController.facture.nomclient}" /><br />
+													id:<br /> <h:outputText
+														value="#{factureController.facture.idclient}" /> <br />
+													telephone: <br /> <h:outputText
+														value="#{factureController.facture.telephone}" /></td>
+
+												<td>email:<br /> <h:outputText
+														value="#{factureController.facture.email}" /> <br />
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr class="heading">
+									<td>Payment Method:<br /></td>
+									<td><h:outputText
+											value="#{factureController.facture.type_paiement}" /></td>
+								</tr>
+								<tr class="details">
+									<td>type de produit</td>
+									<td><h:outputText
+											value="#{factureController.facture.type_produit}" /></td>
+								</tr>
+								<tr class="heading">
+									<td>Item</td>
+									<td>Price</td>
+								</tr>
+								<tr class="item">
+									<td>prix unitaire</td>
+									<td><h:outputText
+											value="#{factureController.facture.prix_unitaire}" /></td>
+								</tr>
+								<tr class="item">
+									<td>quantite</td>
+									<td><h:outputText
+											value="#{factureController.facture.quantité}" /></td>
+								</tr>
+								<tr class="item">
+									<td>total</td>
+									<td><h:outputText
+											value="#{factureController.facture.total_HT}" /></td>
+								</tr>
+								<tr class="item">
+									<td>reduction</td>
+									<td><h:outputText
+											value="#{factureController.facture.reduction}" /></td>
+								</tr>
+								<tr class="item last">
+									<td>total avec reduction</td>
+									<td><h:outputText
+											value="#{factureController.facture.total_reduction}" /></td>
+								</tr>
+
+							</table>
+
+
+
+
+
+							<p:commandButton value="Print" title="Print" type="button">
+								<p:printer target="fact" />
+							</p:commandButton>
+						</p:column>
+					</p:outputPanel>
+				</p:dialog>
+
+
+			</h:form>
+		</h:panelGroup>
+
+	
+	</ui:define>
+</ui:composition>
