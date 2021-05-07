@@ -319,6 +319,7 @@ public class User implements UserDetails {
 		this.resetPasswordToken=resetPasswordToken;
 	}
 	public User(){}
+<<<<<<< HEAD
 
 	public User(Long id,String firstName, String lastName, String city, String nationality, String email, String password,
 			Role role, Boolean enabled) {
@@ -357,3 +358,6 @@ public class User implements UserDetails {
 
 
 }
+=======
+}
+>>>>>>> 55c688cee2ffac8c67f099a970e9a21547c4f941
